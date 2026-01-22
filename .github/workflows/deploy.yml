@@ -1,0 +1,24 @@
+name: Deploy to DigitalOcean
+
+on:
+  push:
+    branches:
+      - main  # This triggers the deploy on every push to the main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        # This step pulls the code from the GitHub repository to the GitHub runner
+
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}  # Add your SSH private key to GitHub secrets
+
+      - name: Deploy to DigitalOcean
+        run: |
+          ssh -o StrictHostKeyChecking=no username@your_droplet_ip "cd /var/www/html/cse135hw && git pull origin main"
+        # This SSH command connects to your droplet and pulls the latest changes from GitHub to your server
