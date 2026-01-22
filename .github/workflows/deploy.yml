@@ -16,7 +16,7 @@ jobs:
     - name: Setup SSH key for DigitalOcean
       uses: webfactory/ssh-agent@v0.5.3
       with:
-        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}  # Ensure SSH key is correct in GitHub Secrets
 
     - name: Copy files to DigitalOcean
       run: |
