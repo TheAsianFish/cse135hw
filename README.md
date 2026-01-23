@@ -20,7 +20,7 @@ cd cse135hw
 ## Login Instructions
 
 ### Domain: https://cse135patrick.site
-**Username**: grader
+**Username**: grader  
 **Password**: 135grader
 
 ## Site Contents
