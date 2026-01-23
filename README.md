@@ -20,11 +20,8 @@ cd cse135hw
 ## Login Instructions
 
 ### Domain: https://cse135patrick.site
-
-### Grader Password
-```bash
-135grader
-```
+**Username**: grader
+**Password**: 135grader
 
 ## Site Contents
 - Personal Page:   https://cse135patrick.site/members/patrickchung.html
