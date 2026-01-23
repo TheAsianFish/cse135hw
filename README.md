@@ -39,14 +39,12 @@ cd cse135hw
 
 
 ## Compression
-```bash
 After Apache compression was enabled using 'mod_deflate', the content files are compressed before being sent to the browser. Verification was done in DevTools and in the Network tab where responses show 'Content-Encoding: gzip' and reduced sizes
-```
+
 
 ## Server Header Obfuscation
-```bash
 Enabled mod_headers and set ServerTokens Prod and ServerSignature Off. A local virtual host was created on 127.0.0.1:8080 and the public HTTPS virtual host proxies these requests to this internal listener. The outgoing response header is explicitly set using mod_headers resulting in the final resposne header: 'Server: CSE135 Server'.
-```
+
 
 ## Access Logs & Analytics
 - Apache logs located at: /var/log/apache2/access.log
