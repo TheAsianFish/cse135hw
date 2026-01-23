@@ -14,3 +14,11 @@ This repository hosts the website for CSE 135 homework. It includes a homepage, 
 ```bash
 git clone https://github.com/TheAsianFish/cse135hw.git
 cd cse135hw
+```
+
+## Login Instructions
+
+### 1. Grader Password
+```bash
+135grader
+```
