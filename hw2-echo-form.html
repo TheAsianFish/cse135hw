@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>HW2 Echo Form</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 30px; }
+    label { font-weight: 600; display:block; margin-top: 14px; }
+    select, input, button { padding: 8px; width: 320px; }
+    iframe { width: 100%; max-width: 800px; height: 500px; border: 1px solid #ccc; }
+  </style>
+</head>
+<body>
+
+<h1>HW2 Echo Tester</h1>
+
+<form id="echoForm">
+  <label>Language</label>
+  <select id="lang">
+    <option value="python">Python</option>
+  </select>
+
+  <label>HTTP Method</label>
+  <select id="method">
+    <option>GET</option>
+    <option>POST</option>
+    <option>PUT</option>
+    <option>DELETE</option>
+  </select>
+
+  <label>Encoding</label>
+  <select id="encoding">
+    <option value="application/x-www-form-urlencoded">x-www-form-urlencoded</option>
+    <option value="application/json">application/json</option>
+  </select>
+
+  <label>Field 1</label>
+  <input id="field1" placeholder="example value">
+
+  <label>Field 2</label>
+  <input id="field2" placeholder="example value">
+
+  <br><br>
+  <button type="submit">Submit</button>
+</form>
+
+<h2>Response</h2>
+<iframe id="responseFrame"></iframe>
+
+<noscript>
+  <hr>
+  <h2>No-JS Fallback</h2>
+
+  <form method="GET" action="/cgi-bin/echo-python.py">
+    <input name="field1" placeholder="field1">
+    <input name="field2" placeholder="field2">
+    <button>GET Echo</button>
+  </form>
+
+  <form method="POST" action="/cgi-bin/echo-python.py">
+    <input name="field1" placeholder="field1">
+    <input name="field2" placeholder="field2">
+    <button>POST Echo</button>
+  </form>
+</noscript>
+
+<script>
+const form = document.getElementById("echoForm");
+const frame = document.getElementById("responseFrame");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const method = document.getElementById("method").value;
+  const encoding = document.getElementById("encoding").value;
+
+  const data = {
+    field1: document.getElementById("field1").value,
+    field2: document.getElementById("field2").value
+  };
+
+  let url = "/cgi-bin/echo-python.py";
+  let options = { method, headers: {} };
+
+  if (method === "GET") {
+    url += `?field1=${encodeURIComponent(data.field1)}&field2=${encodeURIComponent(data.field2)}`;
+  } else {
+    options.headers["Content-Type"] = encoding;
+    options.body = encoding === "application/json"
+      ? JSON.stringify(data)
+      : new URLSearchParams(data).toString();
+  }
+
+  const response = await fetch(url, options);
+  const text = await response.text();
+
+  const doc = frame.contentWindow.document;
+  doc.open();
+  doc.write(text);
+  doc.close();
+});
+</script>
+
+</body>
+</html>

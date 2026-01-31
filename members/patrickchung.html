@@ -6,48 +6,117 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Patrick Chung - Personal Page</title>
     <link rel="stylesheet" href="/assets/styles.css" />
+
+    <style>
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 24px 16px 40px;
+        }
+
+        .header-inner {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .header-actions {
+            margin-top: 12px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 18px 0;
+        }
+
+        .card h2 {
+            margin-top: 0;
+        }
+
+        .projects li {
+            margin: 6px 0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px 16px;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 650px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <header>
-        <h1>Patrick Chung</h1>
-        <p>Welcome to my personal page!</p>
-        <a href="/index.html">
-            <button>Back to Homepage</button>
-        </a>
+    <div class="container">
 
-    </header>
+        <header>
+            <div class="header-inner">
+                <h1>Patrick Chung</h1>
+                <p>Welcome to my personal page!</p>
 
-    <section>
-        <h2>About Me</h2>
-        <p>I am a student at UCSD, working on projects and learning web development.</p>
-    </section>
+                <div class="header-actions">
+                    <a href="/index.html"><button type="button">Back to Homepage</button></a>
+                    <a href="https://linkedin.com/in/patrick-ji-chung" target="_blank" rel="noreferrer">
+                        <button type="button">LinkedIn</button>
+                    </a>
+                    <a href="https://github.com/TheAsianFish" target="_blank" rel="noreferrer">
+                        <button type="button">GitHub</button>
+                    </a>
+                </div>
+            </div>
+        </header>
 
-    <section>
-        <h2>My Projects</h2>
-        <ul>
-            <li><a href="#">Project 1</a></li>
-            <li><a href="#">Project 2</a></li>
-            <!-- Add actual projects later -->
-        </ul>
-    </section>
+        <section class="card">
+            <h2>About Me</h2>
+            <p>
+                I am a student at UCSD, working on projects and learning web development.
+                I like building practical things and improving them over time.
+            </p>
+        </section>
 
-    <section>
-        <h2>Fun Facts</h2>
-        <ul>
-            <li>I love dogs!</li>
-        </ul>
-    </section>
+        <section class="card">
+            <h2>My Projects</h2>
+            <ul class="projects">
+                <li><a href="#">Project 1 (add link later)</a></li>
+                <li><a href="#">Project 2 (add link later)</a></li>
+            </ul>
+        </section>
 
-    <footer>
-        <h2>Let's Connect!</h2>
-        <ul>
-            <li><a href="https://linkedin.com/in/patrick-ji-chung">LinkedIn</a></li>
-            <li><a href="https://github.com/TheAsianFish">GitHub</a></li>
-            <li><a href="mailto:jmchung2006@gmail.com">Personal Email</a></li>
-            <li><a href="mailto:p2chung@ucsd.edu">School Email</a></li>
-        </ul>
-    </footer>
+        <section class="card">
+            <h2>Fun Facts</h2>
+            <ul>
+                <li>I love dogs!</li>
+                <li>My favorite food is noodles.</li>
+                <li>I am double-jointed.</li>
+            </ul>
+        </section>
+
+        <footer>
+            <h2>Let’s Connect</h2>
+            <div class="contact-grid">
+                <div><a href="mailto:jmchung2006@gmail.com">Personal Email</a></div>
+                <div><a href="mailto:p2chung@ucsd.edu">School Email</a></div>
+                <div><a href="https://linkedin.com/in/patrick-ji-chung" target="_blank" rel="noreferrer">LinkedIn</a>
+                </div>
+                <div><a href="https://github.com/TheAsianFish" target="_blank" rel="noreferrer">GitHub</a></div>
+            </div>
+
+            <p style="margin-top: 14px;">Created for CSE 135 by Patrick Chung</p>
+        </footer>
+
+    </div>
 </body>
 
 </html>
