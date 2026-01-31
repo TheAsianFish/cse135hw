@@ -3,103 +3,190 @@
 <head>
   <meta charset="utf-8">
   <title>HW2 Echo Form</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/assets/styles.css" />
   <style>
-    body { font-family: system-ui, sans-serif; margin: 30px; }
-    label { font-weight: 600; display:block; margin-top: 14px; }
-    select, input, button { padding: 8px; width: 320px; }
-    iframe { width: 100%; max-width: 800px; height: 500px; border: 1px solid #ccc; }
+    main { max-width: 780px; margin: 0 auto; padding: 18px; }
+    .row { margin: 12px 0; }
+    label { display:block; font-weight:600; margin: 10px 0 6px; }
+    select, input, button { padding: 10px; width: 100%; max-width: 520px; box-sizing: border-box; }
+    .hint { font-size: 14px; color: #444; margin-top: 6px; }
+    iframe { width: 100%; height: 520px; border: 1px solid #ccc; background: #fff; }
+    .inline { display: flex; gap: 10px; flex-wrap: wrap; }
+    .inline > * { flex: 1 1 240px; }
+    .topbar { display:flex; align-items:center; justify-content:space-between; gap: 12px; flex-wrap: wrap; }
+    .actions { display:flex; justify-content:center; }
+    .topbar-right { margin-left:auto; }
   </style>
 </head>
 <body>
 
-<h1>HW2 Echo Tester</h1>
+<header class="header">
+  <div class="topbar" style="padding: 0 18px;">
+    <h1 style="margin: 12px 0;">HW2 Echo Tester</h1>
+    <a class="topbar-right" href="/hw2/" style="text-decoration:none;">
+      <button type="button" style="width:auto;">Back to HW2</button>
+    </a>
+  </div>
+</header>
 
-<form id="echoForm">
-  <label>Language</label>
-  <select id="lang">
-    <option value="python">Python</option>
-  </select>
+<main>
+  <p class="hint">
+    JS-on: supports GET/POST/PUT/DELETE + urlencoded/JSON for Python/PHP/Node.<br />
+    JS-off fallback: simple GET/POST urlencoded only (separate forms per language).
+  </p>
 
-  <label>HTTP Method</label>
-  <select id="method">
-    <option>GET</option>
-    <option>POST</option>
-    <option>PUT</option>
-    <option>DELETE</option>
-  </select>
+  <form id="echoForm">
+    <div class="inline">
+      <div class="row">
+        <label for="lang">Language endpoint</label>
+        <select id="lang" name="lang">
+          <option value="python">Python</option>
+          <option value="php">PHP</option>
+          <option value="node">Node</option>
+        </select>
+        <div class="hint">Targets the echo endpoint for the selected language.</div>
+      </div>
 
-  <label>Encoding</label>
-  <select id="encoding">
-    <option value="application/x-www-form-urlencoded">x-www-form-urlencoded</option>
-    <option value="application/json">application/json</option>
-  </select>
+      <div class="row">
+        <label for="method">HTTP method</label>
+        <select id="method" name="method">
+          <option>GET</option>
+          <option>POST</option>
+          <option>PUT</option>
+          <option>DELETE</option>
+        </select>
+        <div class="hint">GET sends fields in the query string, others send a body.</div>
+      </div>
 
-  <label>Field 1</label>
-  <input id="field1" placeholder="example value">
+      <div class="row">
+        <label for="encoding">Encoding</label>
+        <select id="encoding" name="encoding">
+          <option value="application/x-www-form-urlencoded">x-www-form-urlencoded</option>
+          <option value="application/json">application/json</option>
+        </select>
+        <div class="hint">Used for the request body on POST/PUT/DELETE.</div>
+      </div>
+    </div>
 
-  <label>Field 2</label>
-  <input id="field2" placeholder="example value">
+    <div class="inline">
+      <div class="row">
+        <label for="field1">Field 1</label>
+        <input id="field1" name="field1" placeholder="e.g. hello" />
+      </div>
 
-  <br><br>
-  <button type="submit">Submit</button>
-</form>
+      <div class="row">
+        <label for="field2">Field 2</label>
+        <input id="field2" name="field2" placeholder="e.g. 123" />
+      </div>
+    </div>
 
-<h2>Response</h2>
-<iframe id="responseFrame"></iframe>
-
-<noscript>
-  <hr>
-  <h2>No-JS Fallback</h2>
-
-  <form method="GET" action="/cgi-bin/echo-python.py">
-    <input name="field1" placeholder="field1">
-    <input name="field2" placeholder="field2">
-    <button>GET Echo</button>
+    <div class="row actions">
+      <button type="submit" style="max-width: 220px;">Submit</button>
+    </div>
+    <div class="row">
+      <div class="hint" id="statusLine"></div>
+    </div>
   </form>
 
-  <form method="POST" action="/cgi-bin/echo-python.py">
-    <input name="field1" placeholder="field1">
-    <input name="field2" placeholder="field2">
-    <button>POST Echo</button>
-  </form>
-</noscript>
+  <h2>Response</h2>
+  <iframe id="responseFrame" title="Echo response frame"></iframe>
 
-<script>
-const form = document.getElementById("echoForm");
-const frame = document.getElementById("responseFrame");
+  <noscript>
+    <hr />
+    <h2>No-JS Fallback</h2>
 
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
+    <h3>Python</h3>
+    <form method="GET" action="/cgi-bin/echo-python.py" class="row">
+      <input name="field1" placeholder="field1" />
+      <input name="field2" placeholder="field2" />
+      <button type="submit">GET (Python)</button>
+    </form>
+    <form method="POST" action="/cgi-bin/echo-python.py" class="row">
+      <input name="field1" placeholder="field1" />
+      <input name="field2" placeholder="field2" />
+      <button type="submit">POST (Python)</button>
+    </form>
 
-  const method = document.getElementById("method").value;
-  const encoding = document.getElementById("encoding").value;
+    <h3>PHP</h3>
+    <form method="GET" action="/cgi-bin/echo-php.php" class="row">
+      <input name="field1" placeholder="field1" />
+      <input name="field2" placeholder="field2" />
+      <button type="submit">GET (PHP)</button>
+    </form>
+    <form method="POST" action="/cgi-bin/echo-php.php" class="row">
+      <input name="field1" placeholder="field1" />
+      <input name="field2" placeholder="field2" />
+      <button type="submit">POST (PHP)</button>
+    </form>
 
-  const data = {
-    field1: document.getElementById("field1").value,
-    field2: document.getElementById("field2").value
-  };
+    <h3>Node</h3>
+    <form method="GET" action="/cgi-bin/echo-node.js" class="row">
+      <input name="field1" placeholder="field1" />
+      <input name="field2" placeholder="field2" />
+      <button type="submit">GET (Node)</button>
+    </form>
+    <form method="POST" action="/cgi-bin/echo-node.js" class="row">
+      <input name="field1" placeholder="field1" />
+      <input name="field2" placeholder="field2" />
+      <button type="submit">POST (Node)</button>
+    </form>
+  </noscript>
 
-  let url = "/cgi-bin/echo-python.py";
-  let options = { method, headers: {} };
+  <script>
+    const form = document.getElementById("echoForm");
+    const frame = document.getElementById("responseFrame");
+    const statusLine = document.getElementById("statusLine");
 
-  if (method === "GET") {
-    url += `?field1=${encodeURIComponent(data.field1)}&field2=${encodeURIComponent(data.field2)}`;
-  } else {
-    options.headers["Content-Type"] = encoding;
-    options.body = encoding === "application/json"
-      ? JSON.stringify(data)
-      : new URLSearchParams(data).toString();
-  }
+    const ENDPOINTS = {
+      python: "/cgi-bin/echo-python.py",
+      php: "/cgi-bin/echo-php.php",
+      node: "/cgi-bin/echo-node.js"
+    };
 
-  const response = await fetch(url, options);
-  const text = await response.text();
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
 
-  const doc = frame.contentWindow.document;
-  doc.open();
-  doc.write(text);
-  doc.close();
-});
-</script>
+      const lang = document.getElementById("lang").value;
+      const method = document.getElementById("method").value;
+      const encoding = document.getElementById("encoding").value;
 
+      const data = {
+        field1: document.getElementById("field1").value,
+        field2: document.getElementById("field2").value
+      };
+
+      let url = ENDPOINTS[lang] || ENDPOINTS.python;
+      const options = { method, headers: {} };
+
+      if (method === "GET") {
+        url += `?field1=${encodeURIComponent(data.field1)}&field2=${encodeURIComponent(data.field2)}`;
+      } else {
+        options.headers["Content-Type"] = encoding;
+        options.body = encoding === "application/json"
+          ? JSON.stringify(data)
+          : new URLSearchParams(data).toString();
+      }
+
+      statusLine.textContent = `Sending ${method} ${url}...`;
+
+      try {
+        const response = await fetch(url, options);
+        const text = await response.text();
+        const doc = frame.contentWindow.document;
+        doc.open();
+        doc.write(text);
+        doc.close();
+        statusLine.textContent = `Done: HTTP ${response.status}`;
+      } catch (err) {
+        statusLine.textContent = `Error: ${String(err)}`;
+      }
+    });
+  </script>
+</main>
+
+<footer>
+  <p>Created for CSE 135 by Patrick Chung</p>
+</footer>
 </body>
 </html>
