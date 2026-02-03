@@ -98,12 +98,10 @@ The **Echo Form Tester** is a standalone HTML page used to test all echo endpoin
 For the free-choice analytics tool, I evaluated several options and chose **Microsoft Clarity**.
 
 **Why Clarity:**
-- Free and easy to integrate
-- Provides session replay and heatmaps
-- More privacy-conscious than many fingerprint-heavy tools
-- No complex backend setup required
+Clarity was chosen because it is free, simple to integrate, and provides session replays and heatmaps without requiring backend changes.
 
-Clarity was verified by observing session recordings in the dashboard.
+It was verified by observing recorded user sessions in the Clarity dashboard. While Clarity offers strong visual insight into user behavior, it focuses more on the screen replay
+so it works best alongside tools like Google Analytics.
 
 Screenshot included:
 - `free-choice.png`
