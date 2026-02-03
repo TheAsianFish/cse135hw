@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Fingerprint Demo</title>
+    <link rel="stylesheet" href="/assets/styles.css" />
+</head>
+
+<body>
+    <h1>Fingerprint Demo</h1>
+    <p id="status">Loading…</p>
+
+    <script src="https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@4/dist/fp.min.js"></script>
+    <script>
+        async function run() {
+            const status = document.getElementById("status");
+
+            const cookieName = "cse135_uid";
+            let uid = (document.cookie.match(new RegExp("(^| )" + cookieName + "=([^;]+)")) || [])[2];
+            if (!uid) {
+                uid = "u_" + Math.random().toString(16).slice(2) + Date.now().toString(16);
+                document.cookie = `${cookieName}=${uid}; Path=/; Max-Age=31536000; SameSite=Lax`;
+            }
+
+            const fp = await FingerprintJS.load();
+            const result = await fp.get();
+            const visitorId = result.visitorId;
+
+            const res = await fetch("/cgi-bin/fingerprint-node.js", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ uid, visitorId, ts: new Date().toISOString() })
+            });
+
+            const text = await res.text();
+            status.textContent = `uid(cookie)=${uid} | fingerprint=${visitorId} | server=${res.status}`;
+            document.body.insertAdjacentHTML("beforeend", text);
+        }
+
+        run().catch(e => {
+            document.getElementById("status").textContent = "Error: " + e;
+        });
+    </script>
+
+    <noscript>
+        <p><b>JavaScript is off.</b> Fingerprinting cannot run; only cookie-based/session-based tracking works.</p>
+    </noscript>
+</body>
+
+</html>
