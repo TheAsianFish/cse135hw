@@ -50,3 +50,65 @@ Enabled mod_headers and set ServerTokens Prod and ServerSignature Off. A local v
 - Apache logs located at: /var/log/apache2/access.log
 - Generated GoAccess report using: goaccess access.log --log-format=COMBINED
 
+---
+
+## Homework 2 – CGI & Analytics
+
+### Live Site
+https://cse135patrick.site
+
+Navigate to:
+- **Homework 2 index**: https://cse135patrick.site/hw2/
+
+All required CGI demos are linked from this page.
+
+---
+
+### Homework 2 – CGI Programs
+
+For Homework 2, I implemented the required CGI demos in **three languages**:
+- Python
+- PHP
+- Node.js
+
+Each language includes the following five programs:
+1. `hello-html-language`
+2. `hello-json-language`
+3. `environment-language`
+4. `echo-language`
+5. `state-language`
+
+All CGI scripts are located on the server under:
+- `/usr/lib/cgi-bin/`
+
+The HTML pages (homepage, HW2 index, echo form tester, fingerprint demo) are located under:
+- `/var/www/html/cse135hw/`
+
+
+The **Echo Form Tester** is a standalone HTML page used to test all echo endpoints across languages and supports:
+- GET / POST / PUT / DELETE
+- x-www-form-urlencoded and application/json
+- JavaScript-enabled and no-JavaScript fallback modes
+
+---
+
+### Third-Party Analytics
+
+#### Approach 3: Free Choice – Microsoft Clarity
+For the free-choice analytics tool, I evaluated several options and chose **Microsoft Clarity**.
+
+**Why Clarity:**
+- Free and easy to integrate
+- Provides session replay and heatmaps
+- More privacy-conscious than many fingerprint-heavy tools
+- No complex backend setup required
+
+Clarity was verified by observing session recordings in the dashboard.
+
+Screenshot included:
+- `free-choice.png`
+
+
+
+
+
