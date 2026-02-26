@@ -106,6 +106,38 @@ so it works best alongside tools like Google Analytics.
 Screenshot included:
 - `free-choice.png`
 
+### Homework 3 – Data Collection and Storage
+
+## Server IP:
+159.223.192.78
+
+- Target Site:  
+  https://test.cse135patrick.site
+
+- Collector Endpoint:  
+  https://collector.cse135patrick.site/log.php
+
+- Reporting REST API:  
+  https://reporting.cse135patrick.site/api/events/
+
+## Database
+PostgreSQL database
+Database name: cse135
+Table: events
+
+### Notes
+
+- Sessioning implemented using `sessionStorage` per tab (`sid`).
+- Events are tied together using the `sid` field.
+- Performance, static, and activity events are collected.
+- Data is written to both JSONL and PostgreSQL.
+- REST endpoint returns data directly from PostgreSQL.
+
+
+
+
+
+
 
 
 
