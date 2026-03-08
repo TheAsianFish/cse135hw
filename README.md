@@ -134,6 +134,113 @@ Table: events
 - REST endpoint returns data directly from PostgreSQL.
 
 
+### Homework 4 – MVC Reporting Dashboard (Derisk Checkpoint)
+
+## Dashboard Login
+
+URL:  
+https://reporting.cse135patrick.site/login.php
+
+Credentials:  
+Username: grader  
+Password: 135grader
+
+---
+
+## Step 1 – MVC Web Application with Authentication
+
+A reporting dashboard was implemented using PHP with an MVC-style structure.  
+Authentication is required before accessing reporting pages. If a user attempts to directly access protected URLs, they are redirected to the login page.
+
+Protected pages:
+- https://reporting.cse135patrick.site/reports/index.php
+- https://reporting.cse135patrick.site/reports/table.php
+- https://reporting.cse135patrick.site/reports/charts.php
+
+### MVC Structure
+
+Model (Data Layer)
+- `lib/db.php` – PostgreSQL database connection
+
+View (Presentation Layer)
+- `login.php`
+- `reports/index.php`
+- `reports/table.php`
+- `reports/charts.php`
+- `lib/layout.php`
+
+Controller (Application Logic)
+- `lib/auth.php`
+- `login.php`
+- `logout.php`
+
+---
+
+## Step 2 – Datastore Connected to Table/Grid
+
+A reporting page displays collected analytics data from PostgreSQL in a raw HTML table.
+
+URL:  
+https://reporting.cse135patrick.site/reports/table.php
+
+The table reads from the `events` table and displays fields such as:
+- Event ID
+- Timestamp
+- Event Type
+- Session ID
+- Page URL
+
+---
+
+## Step 3 – Datastore Connected to Charts
+
+Charts were implemented using Chart.js to visualize aggregated analytics data.
+
+URL:  
+https://reporting.cse135patrick.site/reports/charts.php
+
+Charts include:
+
+Event Count by Type
+```sql
+SELECT type, COUNT(*) AS count
+FROM events
+GROUP BY type
+ORDER BY count DESC;
+```
+
+Top Pages by Event Count
+```sql
+SELECT page, COUNT(*) AS count
+FROM events
+GROUP BY page
+ORDER BY count DESC
+LIMIT 10;
+```
+
+The charts dynamically update based on the data stored in PostgreSQL.
+
+---
+
+## Summary
+
+The Homework 4 dashboard connects the analytics pipeline built in Homework 3 to a reporting interface.
+
+```
+Browser Events
+   ↓
+collector.js
+   ↓
+log.php ingestion endpoint
+   ↓
+PostgreSQL events table
+   ↓
+Reporting dashboard
+   ↓
+Tables and charts
+```
+
+
 
 
 
