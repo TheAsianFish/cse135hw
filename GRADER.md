@@ -133,6 +133,14 @@ Authentication uses server-side sessions with role-based access checks on report
 
 Reports are rendered with server-side PHP queries and client-side Chart.js visualizations. This made development fast and kept things flexible, but at scale it puts repeated load on the database whenever reports are accessed. Larger systems typically introduce precomputed dashboards, materialized views, or caching layers to handle concurrent users more efficiently.
 
+Also,
+Saved reports store report configuration rather than a snapshot of analytics data. 
+Charts are generated dynamically when the report is viewed, meaning the visualizations reflect the most current dataset rather than the state at the time the report was saved.
+
+A production reporting system would likely store snapshot data to preserve historical accuracy of reports.
+
+I recognize this as a drawback and might be misleading. I want to make it clear that when saving these reports, the data visualization doesn't reflect previous "state".
+
 ---
 
 ### Analytics Data Model
