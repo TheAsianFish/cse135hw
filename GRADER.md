@@ -9,9 +9,9 @@ Three accounts are set up for testing. Use whichever role fits what you're evalu
 
 | Role | Username | Password |
 |------|----------|----------|
-| Super Admin | `admin` | `admin123` |
-| Analyst | `analyst` | `analyst123` |
-| Viewer | `viewer` | `viewer123` |
+| Super Admin | `superadmin@cse135.local` | `super135` |
+| Analyst | `analyst@cse135.local` | `analyst123` |
+| Viewer | `viewer@cse135.local` | `viewer123` |
 
 ---
 
