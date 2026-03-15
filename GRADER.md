@@ -35,7 +35,7 @@ The more you navigate around, the richer the charts will look when you open the 
 
 ### Step 2 -- Open the Reporting Dashboard
 
-👉 **https://reporting.cse135patrick.site**
+👉 **https://reporting.cse135patrick.site/login.php**
 
 Log in with the **analyst** account to start.
 
