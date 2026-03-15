@@ -241,6 +241,209 @@ Tables and charts
 ```
 
 
+### Homework 5 – Reporting DashBoard Final Push
+
+# Project Overview
+
+This project implements a secure reporting dashboard built on top of the analytics
+collector developed earlier in the course.
+
+The system allows authenticated users to explore analytics data, generate reports,
+and export them for sharing or documentation.
+
+The dashboard supports multiple roles with authorization rules controlling which
+sections of the reporting system a user can access.
+
+Reports include charts, data tables, and analyst commentary to provide
+interpretation of collected analytics data.
+
+The system focuses on:
+
+• authentication security  
+• role-based authorization  
+• server-side analytics processing  
+• data visualization  
+• exportable reporting  
+
+---
+
+# Deployment
+
+Live deployment:
+
+```
+https://reporting.cse135patrick.site/login.php
+https://reporting.cse135patrick.site/reports/index.php
+```
+
+Test site generating analytics data:
+
+```
+https://test.cse135patrick.site
+```
+
+---
+
+# Report Categories
+
+Three main report types are implemented:
+
+### Overview Report
+
+Displays high-level traffic statistics:
+
+• total events  
+• session counts  
+• unique pages  
+• event activity over time  
+• most visited pages  
+
+Charts:
+
+• events by day line chart  
+• event type distribution chart  
+
+---
+
+### Performance Report
+
+Displays performance metrics captured from the client.
+
+Metrics:
+
+• average load time  
+• maximum load time  
+• page-level performance  
+
+Charts:
+
+• average load time by page  
+
+---
+
+### Error Report
+
+Displays captured client errors.
+
+Metrics:
+
+• total error count  
+• grouped error messages  
+• error frequency  
+
+Charts:
+
+• error trend by day  
+
+---
+
+# Saved Reports
+
+Analysts can save curated reports.
+
+Saved reports contain:
+
+• title  
+• description  
+• analyst interpretation  
+• category  
+• chart visualizations  
+• export functionality  
+
+Viewers can access saved reports but cannot modify them.
+
+---
+
+# Export System
+
+Reports can be exported to PDF.
+
+The export system generates a PDF version of a report page which can be downloaded
+and shared.
+
+---
+
+# Authentication and Authorization
+
+Three user roles are implemented:
+
+```
+super_admin
+analyst
+viewer
+```
+
+Permissions:
+
+Super Admin
+• manage users
+• access all reports
+
+Analyst
+• view report sections
+• create and edit saved reports
+
+Viewer
+• view saved reports only
+
+Authorization checks protect all report endpoints.
+
+---
+
+# Data Visualization
+
+Charts are implemented using Chart.js.
+
+Visualization types include:
+
+• line charts
+• bar charts
+• horizontal bar charts
+
+Tables complement the charts to provide detailed numerical values.
+
+The dashboard includes metric cards to summarize key indicators.
+
+---
+
+# AI Usage
+
+AI tools were used to assist with:
+
+• code formatting
+• UI improvements
+• chart configuration suggestions
+• documentation drafting
+
+All code was reviewed and tested manually before deployment.
+
+AI tools were treated as a coding assistant rather than an autonomous generator.
+
+---
+
+# Future Improvements
+
+For future iterations, the following improvements could be added:
+
+• date range filtering for reports  
+• session replay insights  
+• performance percentile metrics  
+• scheduled automated reports
+
+---
+
+# Lessons Learned
+
+This project reinforced the importance of:
+
+• server-side authorization checks  
+• clean dashboard presentation  
+• balancing visualization with performance  
+• designing analytics systems that remain simple but extensible
+
+The final dashboard demonstrates how analytics data can be collected, analyzed,
+and presented through a structured reporting interface.
+
 
 
 
