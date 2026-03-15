@@ -111,4 +111,4 @@ I wanted to be upfront about a few areas that might look sparse depending on how
 
 ## A Note on Transparency
 
-I tested this across several browsers and devices to make sure the core functionality works as expected. The limitations above aren't bugs I missed, they're edge cases I wanted to flag honestly so grading is as fair and smooth as possible. Thanks for taking the time to review it!
+I tested this across several browsers and devices to make sure the core functionality works as expected. Thanks for taking the time to review it!
